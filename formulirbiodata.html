@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Praktikum jQuery</title>
+    <style>
+        :root {
+            --biru: #2a5298;
+            --biru-tua: #1e3c72;
+            --biru-muda: #eef4ff;
+            --teks: #1f2a44;
+            --abu: #5b6577;
+            --garis: #dfe4ee;
+            --latar: #f2f5fb;
+            --merah: #c0392b;
+            --hijau: #1e8449;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 32px 16px 48px;
+            background: var(--latar);
+            color: var(--teks);
+            line-height: 1.5;
+            counter-reset: bagian;
+        }
+
+        section {
+            counter-increment: bagian;
+            background: #fff;
+            border: 1px solid var(--garis);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 10px rgba(31, 42, 68, .06);
+            transition: background-color .3s ease, box-shadow .3s ease, border-color .3s ease;
+        }
+
+        section:hover {
+            border-color: #b8cdf0;
+            box-shadow: 0 6px 20px rgba(31, 42, 68, .12);
+        }
+
+        section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 16px;
+            font-size: 1.2rem;
+            color: var(--biru-tua);
+        }
+
+        section h2::before {
+            content: counter(bagian);
+            flex-shrink: 0;
+            display: inline-grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--biru);
+            color: #fff;
+            font-size: .85rem;
+        }
+
+        #profileCard {
+            background: var(--biru-muda);
+            border-left: 4px solid var(--biru);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+        }
+
+        #profileCard h3 {
+            margin: 0 0 4px;
+            font-size: 1.25rem;
+            color: var(--teks);
+        }
+
+        #profileCard p {
+            margin: 0 0 10px;
+            color: var(--abu);
+        }
+
+        #skillList {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        #skillList li {
+            background: #fff;
+            color: var(--biru-tua);
+            border: 1px solid #c7d6f3;
+            border-radius: 999px;
+            padding: 3px 12px;
+            font-size: .85rem;
+            font-weight: 600;
+        }
+
+        button {
+            font: inherit;
+            font-size: .9rem;
+            font-weight: 600;
+            background: var(--biru);
+            color: #fff;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            padding: 9px 16px;
+            margin: 0 6px 8px 0;
+            cursor: pointer;
+            transition: background-color .2s ease, transform .1s ease, box-shadow .2s ease;
+        }
+
+        button:hover {
+            background: var(--biru-tua);
+            box-shadow: 0 3px 8px rgba(30, 60, 114, .25);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button:focus-visible {
+            outline: 3px solid rgba(42, 82, 152, .35);
+            outline-offset: 2px;
+        }
+
+        #btnReset,
+        button[type="reset"] {
+            background: #eef1f7;
+            color: var(--abu);
+        }
+
+        #btnReset:hover,
+        button[type="reset"]:hover {
+            background: #dde3ef;
+            color: var(--teks);
+            box-shadow: none;
+        }
+
+        #btnPesan {
+            background: #fff;
+            color: var(--biru);
+            border-color: var(--biru);
+        }
+
+        #btnPesan:hover {
+            background: var(--biru-muda);
+            color: var(--biru-tua);
+            box-shadow: none;
+        }
+
+        #contactForm p {
+            margin: 0 0 14px;
+            font-size: .9rem;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        textarea {
+            display: inline-block;
+            width: 100%;
+            margin-top: 6px;
+            padding: 10px 12px;
+            font: inherit;
+            font-weight: 400;
+            color: var(--teks);
+            background: #fff;
+            border: 1px solid #c9d1e0;
+            border-radius: 8px;
+            vertical-align: top;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        input::placeholder {
+            color: #9aa4b6;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--biru);
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, .18);
+        }
+
+        .error {
+            color: var(--merah);
+            display: none;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .error::before {
+            content: "⚠ ";
+        }
+
+        #successMessage,
+        #ok2 {
+            color: var(--hijau);
+            font-weight: 600;
+            background: #e8f6ee;
+            border: 1px solid #bfe3cd;
+            border-radius: 8px;
+            padding: 10px 14px;
+            margin: 14px 0 0;
+        }
+
+        #successMessage {
+            display: none;
+        }
+
+        #namaProfil {
+            margin: 0 0 2px;
+            font-size: 1.3rem;
+            color: var(--biru-tua);
+        }
+
+        #jobProfil {
+            margin: 0 0 6px;
+            color: var(--abu);
+        }
+
+        #jobProfil+p {
+            margin: 0 0 16px;
+            font-size: .9rem;
+            color: var(--abu);
+        }
+
+        #formPesan {
+            padding: 16px;
+            background: #f7f9fd;
+            border: 1px dashed #b8cdf0;
+            border-radius: 10px;
+        }
+
+        #formPesan input[type="text"] {
+            margin: 0 0 10px;
+        }
+
+        #formPesan .error {
+            margin: 6px 0 0;
+        }
+
+        #ok2 {
+            margin-top: 10px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 12px 32px;
+            }
+
+            section {
+                padding: 16px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <h2>Demo Profile</h2>
+        <div id="profileCard">
+            <h3 id="profileName">Charles Wong</h3>
+            <p>Web Developer & jQuery Enthusiast</p>
+            <ul id="skillList">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>jQuery</li>
+            </ul>
+        </div>
+        <button id="btnGantiNama">Ganti Nama</button>
+        <button id="btnTambahSkill">Tambah Skill</button>
+        <button id="btnAnimasi">Efek Fade & Slide</button>
+        <button id="btnReset">Reset</button>
+    </section>
+
+    <section>
+        <h2>Form Kontak</h2>
+        <form id="contactForm">
+            <p>Nama Lengkap<br><input type="text" id="nama">
+                <span class="error" id="errNama">Masukkan nama minimal 3 karakter</span>
+            </p>
+            <p>Email<br><input type="text" id="email">
+                <span class="error" id="errEmail">Format email tidak valid</span>
+            </p>
+            <p>Pesan<br><textarea id="pesan"></textarea>
+                <span class="error" id="errPesan">Tulis pesan minimal 10 karakter</span>
+            </p>
+            <button type="submit">Kirim Pesan</button>
+            <button type="reset">Reset</button>
+        </form>
+        <p id="successMessage">Pesan berhasil dikirim!</p>
+    </section>
+
+    <section id="studiKasus">
+        <h2>Studi Kasus: Profil Interaktif</h2>
+        <h3 id="namaProfil">Andi Pratama</h3>
+        <p id="jobProfil">Front-End Developer</p>
+        <p>📍 Jakarta, Indonesia | ✉ andi@example.com</p>
+
+        <button id="btnUbah">Ubah Profil</button>
+        <button id="btnPesan">Tinggalkan Pesan</button>
+
+        <div id="formPesan" style="display:none; margin-top:10px;">
+            <input type="text" id="nama2" placeholder="Nama Anda">
+            <input type="text" id="email2" placeholder="Email Anda">
+            <button id="btnKirim">Kirim</button>
+            <p class="error" id="err2">Nama dan email wajib diisi</p>
+            <p id="ok2" style="color:green; display:none;">Terkirim!</p>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#btnGantiNama').click(function () {
+                $('#profileName').text('Rina Wijaya').css('color', '#2a5298');
+            });
+
+            $('#btnTambahSkill').click(function () {
+                $('#skillList').append('<li>PHP</li>');
+            });
+
+            $('#btnAnimasi').click(function () {
+                $('#profileCard').fadeOut(300).fadeIn(600).slideUp(200).slideDown(300);
+            });
+
+            $('#btnReset').click(function () {
+                $('#profileName').text('Charles Wong').css('color', '');
+                $('#skillList').html('<li>HTML5</li><li>CSS3</li><li>JavaScript</li><li>jQuery</li>');
+            });
+        });
+        $('#contactForm').submit(function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            if ($('#nama').val().trim().length < 3) {
+                $('#errNama').show(); valid = false;
+            } else { $('#errNama').hide(); }
+
+            let emailPola = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPola.test($('#email').val().trim())) {
+                $('#errEmail').show(); valid = false;
+            } else { $('#errEmail').hide(); }
+
+            if ($('#pesan').val().trim().length < 10) {
+                $('#errPesan').show(); valid = false;
+            } else { $('#errPesan').hide(); }
+
+            if (valid) {
+                $('#successMessage').fadeIn().delay(2000).fadeOut();
+            }
+        });
+        $('#btnUbah').click(function () {
+            $('#namaProfil').text('Andi Pratama, S.Kom');
+            $('#jobProfil').html('<b>Senior Front-End Developer</b>');
+        });
+        $('#btnPesan').click(function () {
+            $('#formPesan').slideToggle();
+        });
+        $('#studiKasus').hover(
+            function () { $(this).css('background', '#eef4ff'); },
+            function () { $(this).css('background', 'white'); }
+        );
+        $('#btnKirim').click(function () {
+            if ($('#nama2').val().trim() === '' || $('#email2').val().trim() === '') {
+                $('#err2').show();
+            } else {
+                $('#err2').hide();
+                $('#ok2').fadeIn().delay(2000).fadeOut();
+            }
+        });
+    </script>
+</body>
+
+</html>
