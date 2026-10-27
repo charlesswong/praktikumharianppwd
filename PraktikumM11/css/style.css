@@ -1,0 +1,366 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --coklat-tua: #2a1608;
+    --coklat: #8a4b1f;
+    --krem: #f6efe4;
+    --krem-muda: #efe4d2;
+    --aksen: #e8891c;
+    --gelap: #1a1a1d;
+    --merah: #c0392b;
+    --hijau: #27ae60;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--krem);
+    color: var(--gelap);
+    line-height: 1.6;
+    /* scroll-behavior CSS dihapus: smooth scroll ditangani jQuery (animate) */
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVBAR & DROPDOWN (Event: mouseenter/mouseleave, Effect: slideDown/slideUp) --- */
+nav {
+    background: var(--gelap);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+}
+
+.logo {
+    color: var(--aksen);
+    font-weight: 700;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 28px;
+    align-items: center;
+}
+
+.nav-list a,
+.dropdown-btn {
+    color: #fff;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.nav-list a:hover,
+.dropdown-btn:hover {
+    color: var(--aksen);
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    list-style: none;
+    padding: 8px 0;
+    margin-top: 8px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--gelap);
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background: var(--krem);
+    color: var(--coklat);
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    background: linear-gradient(135deg, var(--coklat), var(--gelap));
+    color: #fff;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #e8d5bd;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+section {
+    padding: 60px 0;
+}
+
+section h2 {
+    font-size: 28px;
+    margin-bottom: 24px;
+    color: var(--coklat-tua);
+    text-align: center;
+}
+
+/* --- TABS & MENU (Effect: fadeIn, Event: click) --- */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.tab {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 30px;
+    background: #eadfce;
+    color: var(--gelap);
+    cursor: pointer;
+    font-weight: 600;
+    font: inherit;
+    transition: background 0.2s;
+}
+
+.tab.active {
+    background: var(--coklat);
+    color: #fff;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.menu-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+    top: 0;
+    border-top: 4px solid var(--aksen);
+}
+
+.menu-card h3 {
+    color: var(--coklat-tua);
+    margin-bottom: 8px;
+}
+
+.menu-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-weight: 700;
+    color: var(--aksen);
+    font-size: 16px;
+}
+
+/* --- FORMS & VALIDATION --- */
+.form-section {
+    background: var(--krem-muda);
+    border-top: 1px solid #e0d0c0;
+    border-bottom: 1px solid #e0d0c0;
+}
+
+.form-box {
+    background: #fff;
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 36px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #fafafa;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--coklat);
+    background: #fff;
+}
+
+input.is-error,
+select.is-error {
+    border-color: var(--merah);
+    background: #fdf2f2;
+}
+
+input.is-valid {
+    border-color: var(--hijau);
+}
+
+.pesan-error {
+    color: var(--merah);
+    font-size: 13px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.hint {
+    display: none;
+    font-size: 13px;
+    color: #777;
+    margin-top: 4px;
+}
+
+/* Keterangan permanen di bawah setiap field form member */
+.keterangan {
+    font-size: 13px;
+    color: #777;
+    margin-top: 6px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background: var(--coklat);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: var(--coklat-tua);
+}
+
+/* --- TOAST & SUCCESS NOTIFICATION --- */
+#toast {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 16px 24px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    z-index: 1000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+#toast.success {
+    background: var(--hijau);
+}
+
+#toast.error {
+    background: var(--merah);
+}
+
+.sukses {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 8px;
+    border-left: 5px solid var(--hijau);
+    font-size: 15px;
+}
+
+/* --- BACK TO TOP BUTTON --- */
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--gelap);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 99;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s;
+}
+
+#backToTop:hover {
+    background: var(--coklat);
+}
+
+footer {
+    background: var(--gelap);
+    color: #aaa;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 14px;
+}
+
+/* --- UTILITAS (dipindah dari atribut style inline di HTML) --- */
+.section-putih {
+    background: #fff;
+}
+
+.container-sempit {
+    max-width: 700px;
+    text-align: center;
+}
