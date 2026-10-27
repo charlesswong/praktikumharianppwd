@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gitar Nada - Toko Gitar</title>
+
+    <!-- Content Delivery Network (CDN) jQuery & jQuery Validation Plugin -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR DENGAN DROPDOWN (Minggu 10: Event & Effect) -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🎸 Gitar Nada</a>
+            <ul class="nav-list">
+                <li><a href="#beranda">Beranda</a></li>
+                <li class="dropdown">
+                    <button class="dropdown-btn" type="button">Koleksi Gitar ▼</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#menu">Gitar Akustik</a></li>
+                        <li><a href="#menu">Gitar Listrik</a></li>
+                        <li><a href="#menu">Bass &amp; Aksesori</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tentang">Tentang</a></li>
+                <li><a href="#pesan">Pesan</a></li>
+                <li><a href="#member">Member</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="beranda" class="hero">
+        <div class="container">
+            <h1>Gitar Nada</h1>
+            <p>Toko gitar akustik, listrik, dan aksesori untuk pemula hingga musisi panggung.</p>
+        </div>
+    </header>
+
+    <!-- KOLEKSI PRODUK DENGAN TAB & ANIMATE (Minggu 10) -->
+    <section id="menu" class="container">
+        <h2>Koleksi Pilihan</h2>
+        <div class="tabs">
+            <button class="tab active" type="button" data-target="#tab-akustik">Gitar Akustik</button>
+            <button class="tab" type="button" data-target="#tab-listrik">Gitar Listrik</button>
+            <button class="tab" type="button" data-target="#tab-aksesori">Aksesori</button>
+        </div>
+
+        <div id="tab-akustik" class="tab-panel menu-grid">
+            <div class="menu-card">
+                <h3>Yamaha F310</h3>
+                <p>Gitar akustik populer untuk pemula dengan suara hangat dan seimbang.</p>
+                <div class="price">Rp 1.950.000</div>
+            </div>
+            <div class="menu-card">
+                <h3>Cort AD810</h3>
+                <p>Body dreadnought dengan top solid spruce, nyaman untuk bermain sehari-hari.</p>
+                <div class="price">Rp 2.800.000</div>
+            </div>
+        </div>
+
+        <div id="tab-listrik" class="tab-panel menu-grid">
+            <div class="menu-card">
+                <h3>Squier Stratocaster</h3>
+                <p>Gitar listrik single-coil klasik dengan nada jernih dan responsif.</p>
+                <div class="price">Rp 4.500.000</div>
+            </div>
+            <div class="menu-card">
+                <h3>Epiphone Les Paul</h3>
+                <p>Sustain panjang dan humbucker bertenaga untuk rock dan blues.</p>
+                <div class="price">Rp 6.200.000</div>
+            </div>
+        </div>
+
+        <div id="tab-aksesori" class="tab-panel menu-grid">
+            <div class="menu-card">
+                <h3>Senar Elixir (Set)</h3>
+                <p>Senar berlapis anti-karat yang awet dan nyaman di jari.</p>
+                <div class="price">Rp 180.000</div>
+            </div>
+            <div class="menu-card">
+                <h3>Tuner Clip-On</h3>
+                <p>Tuner digital ringkas dengan layar jelas, cocok untuk semua jenis gitar.</p>
+                <div class="price">Rp 85.000</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" class="section-putih">
+        <div class="container container-sempit">
+            <h2>Tentang Gitar Nada</h2>
+            <p>Toko gitar yang melayani pemula, pelajar, hingga musisi panggung. Setiap gitar dicek dan disetel
+                sebelum dikirim, dan tim kami siap membantu memilih instrumen yang cocok dengan gaya bermain Anda.</p>
+        </div>
+    </section>
+
+    <!-- FORM PESANAN (Validasi Manual dengan Event & Effect) -->
+    <section id="pesan" class="form-section">
+        <div class="container">
+            <h2>Pesan Cepat</h2>
+            <form id="formPesan" class="form-box" novalidate>
+                <div class="form-group">
+                    <label for="nama">Nama Pemesan</label>
+                    <input type="text" id="nama" class="field wajib" placeholder="Masukkan nama Anda">
+                    <div class="hint">Nama diperlukan untuk konfirmasi pesanan Anda.</div>
+                </div>
+                <div class="form-group">
+                    <label for="pilihMenu">Pilih Produk</label>
+                    <select id="pilihMenu" class="field wajib">
+                        <option value="">-- Pilih Produk --</option>
+                        <option>Yamaha F310</option>
+                        <option>Cort AD810</option>
+                        <option>Squier Stratocaster</option>
+                        <option>Epiphone Les Paul</option>
+                        <option>Senar Elixir (Set)</option>
+                    </select>
+                    <div class="hint">Silakan pilih salah satu produk di atas.</div>
+                </div>
+                <button type="submit" class="btn">Kirim Pesanan</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FORM MEMBER (Minggu 11: jQuery Validation Plugin & Custom Method) -->
+    <section id="member">
+        <div class="container">
+            <h2>Pendaftaran Member Resmi</h2>
+            <form id="formMember" class="form-box">
+                <div class="form-group">
+                    <label for="mNama">Nama Lengkap</label>
+                    <input type="text" id="mNama" name="nama" placeholder="Nama lengkap sesuai KTP">
+                    <div class="keterangan">Isi nama lengkap di atas (minimal 3 karakter).</div>
+                </div>
+                <div class="form-group">
+                    <label for="mEmail">Email Aktif</label>
+                    <input type="text" id="mEmail" name="email" placeholder="nama@domain.com">
+                    <div class="keterangan">Isi email aktif di atas, contoh: nama@domain.com.</div>
+                </div>
+                <div class="form-group">
+                    <label for="mHp">Nomor WhatsApp / HP</label>
+                    <input type="text" id="mHp" name="hp" placeholder="10-12 digit angka">
+                    <div class="keterangan">Isi nomor WhatsApp / HP di atas (10-12 digit angka, tanpa spasi).</div>
+                </div>
+                <div class="form-group">
+                    <label for="mUsia">Usia</label>
+                    <input type="text" id="mUsia" name="usia" placeholder="Minimal 17 tahun">
+                    <div class="keterangan">Isi usia di atas (angka, minimal 17 tahun).</div>
+                </div>
+                <div class="form-group">
+                    <label for="mPassword">Password</label>
+                    <input type="password" id="mPassword" name="password"
+                        placeholder="Minimal 8 karakter, ada huruf & angka">
+                    <div class="keterangan">Isi password di atas: minimal 8 karakter, kombinasi huruf dan angka (tidak boleh huruf saja atau angka saja).</div>
+                </div>
+                <div class="form-group">
+                    <label for="mKonfirmasi">Konfirmasi Password</label>
+                    <input type="password" id="mKonfirmasi" name="konfirmasi" placeholder="Ulangi password yang sama">
+                    <div class="keterangan">Isi ulang password yang sama seperti di atas.</div>
+                </div>
+                <button type="submit" class="btn">Daftar Member</button>
+                <div class="sukses" id="sukses">
+                    <strong>Pendaftaran Berhasil!</strong> Selamat bergabung menjadi member resmi Gitar Nada.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER & UTILITY -->
+    <footer>
+        <p>&copy; 2026 Gitar Nada | Charles Wong - Praktikum Pemrograman Web Dasar - Minggu 10 & 11</p>
+    </footer>
+
+    <div id="toast"></div>
+    <button id="backToTop" type="button" aria-label="Kembali ke atas">&#8593;</button>
+
+    <!-- JAVASCRIPT: kode jQuery ada di file terpisah (urutan: jQuery -> Validation -> script.js) -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
